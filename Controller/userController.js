@@ -1,6 +1,7 @@
 const jwt=require('jsonwebtoken')
 const users=require('../Modal/userSchema')
 const admins =require('../Modal/adminSchema')
+const carts=require('../Modal/cartSchema')
 
 
 exports.register=async(req,res)=>{
@@ -60,3 +61,29 @@ exports.login=async(req,res)=>{
         res.status(500).json("Somthing went Wrong" + err)
     }
 }
+exports.getCartView=async(req,res)=>{
+    console.log("Inside Cart List");
+    try{
+        const result=await carts.find()
+        console.log(result);
+        res.status(200).json(result)
+    }
+    catch(err){
+        res.status(401).json(err)
+    }
+  }
+
+  exports.deleteCartList=async(req,res)=>{
+    const{id}=req.params
+    try{
+        console.log("inside cart delete")
+        const result=await carts.findByIdAndDelete({_id:id})
+        console.log(result)
+        res.status(200).json(result)
+    }
+    catch(err){
+        res.status(401).json(err)
+    }
+
+    }
+  

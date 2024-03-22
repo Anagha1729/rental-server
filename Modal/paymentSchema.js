@@ -1,45 +1,45 @@
 const mongoose = require('mongoose')
 const validators = require('validator')
 
-const bookSchema = new mongoose.Schema({
-    title: {
-        type: String,
-        required: true
-        // unique: true
-    },
-    book_image: {
-        type: String,
-        required: true
-
-    },
-    author: {
+const paymentSchema = new mongoose.Schema({
+    Address: {
         type: String,
         required: true
     },
-    genre: {
+    contact: {
         type: String,
         required: true
     },
-    status: {
-        type: String,
-        required: true
-
-    },
-    language: {
+    rentaldate: {
         type: String,
         required: true
     },
-    price:{
+    duedate: {
+        type: String,
+        required: true
+    },
+    cardnumber: {
+        type: String,
+        required: true
+    },
+    cvv: {
+        type: String,
+        required: true
+    },
+    otp: {
+        type: String,
+        required: true
+    },
+    title:{
+        type: String,
+        required: true
+    },
+    reader:{
         type: String,
         required: true
     }
+
+
 })
- const books = mongoose.model('books', bookSchema)
- 
- module.exports = books
-
-
-
-
-
-
+const payments = mongoose.model('payments', paymentSchema)
+module.exports = payments

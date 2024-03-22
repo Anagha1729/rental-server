@@ -2,12 +2,12 @@ const books=require("../Modal/bookSchema")
 
 exports.addBooks=async(req,res)=>{
     console.log("Inside Books")
-    const{title,author,genre,description,language,price}=req.body
-    console.log(title,author,genre,description,language,price)
+    const{title,author,genre,status,language,price}=req.body
+    console.log(title,author,genre,status,language,price)
     const book_image=req.file.filename
     console.log(req.file.filename);
     try{
-        const newBooks=new books({title,book_image,author,genre,description,language,price})
+        const newBooks=new books({title,book_image,author,genre,status,language,price})
         await newBooks.save()
         res.status(200).json(newBooks)
     }
@@ -90,18 +90,18 @@ exports.deleteBookList=async(req,res)=>{
 
     }
 
-    exports.bookUpdate=async(req,res)=>{
-        
-        const{title,author,genre,description,language,price}=req.body
-        const image=req.file?req.file.filename:req.body.image
+    exports.updateBookList=async(req,res)=>{
+        const{title,book_image,author,genre,status,language,price}=req.body
         const{id}=req.params
         try{
-           // console.log("inside delete")
-            const result=await users.findByIdAndUpdate({_id:id},{title,author,genre,description,language,price,image})
+            console.log("Inside Update")
+            const result=await books.findByIdAndUpdate({_id:id},{title,book_image,author,genre,status,language,price})
             console.log(result)
             res.status(200).json(result)
         }
-        catch(err){
-            res.status(401).json(err)
-        }
+catch(err){
+    res.status(401).json(err)
+}
     }
+
+   

@@ -1,7 +1,13 @@
 const mongoose = require('mongoose')
 const validators = require('validator')
+const cartSchema = new mongoose.Schema({
 
-const bookSchema = new mongoose.Schema({
+    userId:{
+        type: String,
+        required: true
+        // unique: true
+
+    },
     title: {
         type: String,
         required: true
@@ -34,12 +40,7 @@ const bookSchema = new mongoose.Schema({
         required: true
     }
 })
- const books = mongoose.model('books', bookSchema)
+ const carts = mongoose.model('carts', cartSchema)
  
- module.exports = books
-
-
-
-
-
+ module.exports = carts
 
